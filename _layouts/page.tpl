@@ -55,7 +55,7 @@
 	
 	<div class="block block-thank">
 		<h3>Powered by</h3>
-		<p>&copy; 2011 意犹WEB前端.</p>
+		<p>&copy; 2011 - 2013 意犹WEB前端.</p>
 	</div>
 </aside>
 
