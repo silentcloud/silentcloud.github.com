@@ -1,6 +1,6 @@
 # General Jekyll Config
 pygments: true
-url: http://example.com
+url: http://silentcloud.github.io
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
 
@@ -12,12 +12,9 @@ theme:
   # Profile links on the left sidebar, leave blank to ignore
   social:
     github: silentcloud
-    #bitbucket: philipj
     hacker_news: silentcloud
     #stackexchange: 348619
     #stackoverflow: 348619
-    #facebook: zuck
-    #tumblr: animalygifs
     #linkedin: philipjagielski
     #gplus: 110552447039675960964
 
