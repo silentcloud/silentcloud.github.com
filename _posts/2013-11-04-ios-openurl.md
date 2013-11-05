@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Hello world!
-category: IOS学习记
+title: 如何在IOS程序中打开另一个程序
+category: ios
 ---
 
 ####1. 在plist文件中，注册对外接口

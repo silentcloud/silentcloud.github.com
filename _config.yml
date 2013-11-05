@@ -11,14 +11,14 @@ desc: Love Life , Love Web Design !!!
 
 custom:
     category:
-        default: Default Category
-        another: Another Category
+        ios: IOS学习记
+        web: WEB前端
     categories:
-      - name:  default
-        title: Default Category
+      - name:  ios
+        title: IOS学习记
 
-      - name:  another
-        title: Another Category
+      - name:  web
+        title: WEB前端
 
 meta:
     author:
