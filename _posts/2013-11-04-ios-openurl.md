@@ -13,13 +13,13 @@ category: ios
 应用程序委托在 application:handleOpenURL:方法中处理传递给应用程序的URL请求。如果您已经为自己 的应用程序注册了定制的URL模式，则务必在委托中实现这个方法。 下面代码实现了这个委托方法:
 
 	-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-		if([[url scheme] isEqualToString:@"myapp"]){
-			[application setApplicationIconBadgeNumber:10];
-			return YES;}return NO;
+	  if([[url scheme] isEqualToString:@"myapp"]){
+	    [application setApplicationIconBadgeNumber:10];
+		  return YES;}return NO;
 		}
 
 	调用：
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"程序的相应连接"]];
+	  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"程序的相应连接"]];
 
 
 1）调用 自带mail: 
