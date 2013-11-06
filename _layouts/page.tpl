@@ -19,7 +19,7 @@
 	{{ content }}
 
 	<footer>
-		<p>&copy; Since 2012</p>
+		<p>&copy; Since 2011</p>
 	</footer>
 </div>
 
@@ -52,7 +52,16 @@
 		<a href="https://github.com/{{ site.meta.author.github }}"><img style="position: absolute; top: 0; right: 0; border: 0;" src="/assets/images/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 	</div>
 	{% endif %}
-	
+
+  <!--
+	<div class="block block-thank">
+  		<h3>Friend Link</h3>
+  		<ul>
+  		  <li><a href=""></a></li>
+  		</ul>
+  </div>
+  -->
+
 	<div class="block block-thank">
 		<h3>Powered by</h3>
 		<p>&copy; 2011 - 2013 意犹WEB前端.</p>
