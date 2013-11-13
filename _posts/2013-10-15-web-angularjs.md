@@ -4,56 +4,56 @@ title: AngularJs 学习笔记
 category: web
 ---
 
+1. ng-app ：引导引用标记
 
-  1. ng-app ：引导引用标记
-  
- 		手动初始化： 
- 		angular.element(document).ready(function(){
- 			angular.bootstrap(document); 
- 		})
+		手动初始化： 
+		angular.element(document).ready(function(){
+			angular.bootstrap(document); 
+		})	
  		
-  2. {{}}：使用双大括号标记{{}}的内容是问候语中绑定的表达式
-  3. ng-model : 绑定变量
-  
- 		<input type="text" ng-model="yourname" placeholder="World">         
- 		<hr>  Hello {{yourname || 'World'}}!
+2. {{}}：使用双大括号标记{{}}的内容是问候语中绑定的表达式
+3. ng-model : 绑定变量
+
+		<input type="text" ng-model="yourname" placeholder="World">         
+		<hr>  Hello {{yourname || 'World'}}!
  		
-  4. ng-controller: 指定对应 controller，eg：ng-controller="PhoneListCtrl"
- 		
- 		var phonecatApp = angular.module('phonecatApp', []); 
- 		phonecatApp.controller('PhoneListCtrl', function PhoneListCtrl($scope){     
- 			$scope.phones = [ 
- 				{'name': 'Nexus S', 'snippet': 'Fast just got faster with Nexus S.'},         
- 				{'name': 'Motorola XOOM™ with Wi-Fi', 'snippet': 'The Next, Next Generation tablet.'},         
- 				{'name': 'MOTOROLA XOOM™', 'snippet': 'The Next, Next Generation tablet.'}     
- 			]; 
- 		});
+4. ng-controller: 指定对应 controller，eg：ng-controller="PhoneListCtrl"
+	
+		var phonecatApp = angular.module('phonecatApp', []); 
+		phonecatApp.controller('PhoneListCtrl', function PhoneListCtrl($scope){     
+			$scope.phones = [ 
+				{'name': 'Nexus S', 'snippet': 'Fast just got faster with Nexus S.'},         
+				{'name': 'Motorola XOOM™ with Wi-Fi', 'snippet': 'The Next, Next Generation tablet.'},         
+				{'name': 'MOTOROLA XOOM™', 'snippet': 'The Next, Next Generation tablet.'}     
+			]; 
+		});
  			
-  5. ng-repeat ： ng-repeat="phone in phones"
-  6. filter: 过滤
+5. ng-repeat ： ng-repeat="phone in phones"
+6. filter: 过滤
+
+		<input ng-model="query"> ng-repeat="phone in phones | filter:query" 
   
- 		<input ng-model="query"> ng-repeat="phone in phones | filter:query" 
-  
-  7. ng-bind-template: 绑定默认不显示原生
- 
- 		<title ng-bind-template="Google Phone Gallery: {{query}}">Google Phone  Gallery</title>
+7. ng-bind-template: 绑定默认不显示原生
+
+		<title ng-bind-template="Google Phone Gallery: {{query}}">Google Phone  Gallery</title>
  		
-  8. orderBy: 排序
-  
- 		<￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼select ng-model="orderProp">     
- 			<option value="name">Alphabetical</option>     
- 			<option value="age">Newest</option> 
- 		</select> 
- 		<li ng-repeat="phone in phones | filter:query | orderBy:orderProp"> 
- 		    {{phone.name}}<p>{{phone.snippet}}</p> 
- 		</li>
+8. orderBy: 排序
+
+		<￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼select ng-model="orderProp">     
+			<option value="name">Alphabetical</option>     
+			<option value="age">Newest</option> 
+		</select> 
+		<li ng-repeat="phone in phones | filter:query | orderBy:orderProp"> 
+			{{phone.name}}<p>{{phone.snippet}}</p> 
+		</li>
  		
-  9. ng-src：图片地址
-  
- 		<img ng-src="{{phone.imageUrl}}">   
+9. ng-src：图片地址
+
+		<img ng-src="{{phone.imageUrl}}">   
  		
-  10. ng-view: 为当前路由把对应的视图模板载入到布局模板中
-  11. ng-click：绑定点击事件
+ 		 		 		
+10. ng-view: 为当前路由把对应的视图模板载入到布局模板中
+11. ng-click：绑定点击事件
 	
 		<img ng-src="{{mainImageUrl}}" class="phone">
 		<ul class="phone-thumbs">    
