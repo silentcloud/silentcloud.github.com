@@ -13,12 +13,16 @@ custom:
     category:
         ios: IOS学习记
         web: WEB前端
+        other: 其他
     categories:
       - name:  ios
         title: IOS学习记
 
       - name:  web
         title: WEB前端
+
+      - name:  other
+        title: 其他
 
 meta:
     author:
