@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  iPhone不越狱上免费VPN方法
-category: ios
+category: other
 ---
 
 ### iphone 不越狱免费VPN方法
