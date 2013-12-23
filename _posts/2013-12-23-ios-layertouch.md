@@ -10,59 +10,55 @@ category: ios
 
 下面直接上代码，大家一看便能够看懂：
 
-````
+	@interface CALayerTestViewController ()
+	{
+    	UIView *supView;
+    	UIButton *subBtn;
+	}
+	@end
 
-@interface CALayerTestViewController ()
-{
-    UIView *supView;
-    UIButton *subBtn;
-}
-@end
+	@implementation CALayerTestViewController
 
-@implementation CALayerTestViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    //定义一个父view
-    supView = [[UIView alloc] initWithFrame:CGRectMake(30, 50, 200, 100)];
-    supView.backgroundColor = [UIColor redColor];
+	- (void)viewDidLoad
+	{
+    	[super viewDidLoad];
+    	//定义一个父view
+    	supView = [[UIView alloc] initWithFrame:CGRectMake(30, 50, 200, 100)];
+    	supView.backgroundColor = [UIColor redColor];
     
-    //定义一个子 view，我这里直接用了个按钮
-    subBtn = [[UIButton alloc] initWithFrame:CGRectMake(-10, -10, 20, 20)];
-    subBtn.backgroundColor = [UIColor greenColor];
-    [subBtn setTitle:@"X" forState:UIControlStateNormal];
+    	//定义一个子 view，我这里直接用了个按钮
+    	subBtn = [[UIButton alloc] initWithFrame:CGRectMake(-10, -10, 20, 20)];
+    	subBtn.backgroundColor = [UIColor greenColor];
+    	[subBtn setTitle:@"X" forState:UIControlStateNormal];
     
-    //测试如果利用添加 view 的方法，点击效果
-    //[subBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    	//测试如果利用添加 view 的方法，点击效果
+    	//[subBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     
-    //如果直接加为 view，超出 A 的部分将不会显示
-    //[supView addSubview:subBtn];
+    	//如果直接加为 view，超出 A 的部分将不会显示
+    	//[supView addSubview:subBtn];
     
-    //利用 layer + 事件来解决
-    [supView.layer addSublayer:subBtn.layer];
+    	//利用 layer + 事件来解决
+    	[supView.layer addSublayer:subBtn.layer];
     
-    [self.view addSubview:supView];
-}
+    	[self.view addSubview:supView];
+	}
 
-//响应 touch 事件，做 view 位置判断
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    CGPoint p = [(UITouch*)[touches anyObject] locationInView:supView];
-    for (CALayer *layer in supView.layer.sublayers) {
-        if ([layer containsPoint:[supView.layer convertPoint:p toLayer:layer]]) {
-            [self close];
-        }
-    }
-}
+	//响应 touch 事件，做 view 位置判断
+	- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+	{
+    	CGPoint p = [(UITouch*)[touches anyObject] locationInView:supView];
+    	for (CALayer *layer in supView.layer.sublayers) {
+        	if ([layer containsPoint:[supView.layer convertPoint:p toLayer:layer]]) {
+            	[self close];
+        	}
+    	}
+	}
 
-- (void)close
-{
-    NSLog(@"close");
-}
+	- (void)close
+	{
+    	NSLog(@"close");
+	}
 
-@end
-
-````
+	@end
 
 今天在看 layer 相关的东西时，临时记起同事之前遇到过一个类似的问题，不过他那个场景比较特殊所以解决方法可以用，但是不太灵活。如果大家有更好的方式，欢迎回复。
