@@ -7,11 +7,12 @@
       <language>zh</language>
 
       <item>
-            <title>SitReminder v1.0.0</title>
+            <title>SitReminder v1.0.1</title>
             <description><![CDATA[
-                <h2>SitReminder v1.0.0 更新日志</h2>
+                <h2>SitReminder v1.0.1 更新日志</h2>
                 <ul>
-                    <li>[NEW] 增加初始功能</li>
+                    <li>[FIX] 关闭由于 xcode beta 引起 localize 问题</li>
+                    <li>[FIX] 时间设置问题</li>
                 </ul>
                 <p>更多内容请访问 <a href="https://github.com/silentcloud/SitReminder">SitReminder</a></p>
             ]]></description>
