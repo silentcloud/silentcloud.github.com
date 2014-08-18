@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+   <channel>
+      <title>SitReminder App Changelog</title>
+      <link>http://silentcloud.github.io/appupxml/sitReminder.xml</link>
+      <description></description>
+      <language>zh</language>
+
+      <item>
+            <title>SitReminder v1.0.0</title>
+            <description><![CDATA[
+                <h2>SitReminder v1.0.0 更新日志</h2>
+                <ul>
+                    <li>[NEW] 增加初始功能</li>
+                </ul>
+                <p>更多内容请访问 <a href="https://github.com/silentcloud/SitReminder">SitReminder</a></p>
+            ]]></description>
+            <pubDate>Wed, 13 Aug 2014 21:00:00 +0800</pubDate>
+            <sparkle:minimumSystemVersion>10.9.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://silentcloud.github.io/upload/SitReminder.dmg" sparkle:shortVersionString="1.0.0" sparkle:version="100" length="4308444" type="application/octet-stream" sparkle:dsaSignature="MC0CFQC03Wn6/PzouTB6gsSyx+Bs6d4mWgIUOiq1Bofd1L3jBd4AZtrWdLfj8cI=" />
+         </item>
+   </channel>
+</rss>
