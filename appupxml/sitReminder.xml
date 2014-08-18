@@ -17,7 +17,7 @@
             ]]></description>
             <pubDate>Wed, 13 Aug 2014 21:00:00 +0800</pubDate>
             <sparkle:minimumSystemVersion>10.9.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://silentcloud.github.io/upload/SitReminder.dmg" sparkle:shortVersionString="1.0.0" sparkle:version="100" length="4086601" type="application/octet-stream" sparkle:dsaSignature="MC0CFAkDNFTuPTwWdb1b8edkCrIc1eYlAhUA1ayNVcR5B2aT2FjoWqUdskC7l4o=" />
+            <enclosure url="https://silentcloud.github.io/upload/SitReminder.dmg" sparkle:shortVersionString="1.0.1" sparkle:version="101" length="4086601" type="application/octet-stream" sparkle:dsaSignature="MCwCFA2w5R3+lnFaVVJy+jIfaKvbi1JqAhRbEffoweWol47pACfsEqAzvbLDww==" />
          </item>
    </channel>
 </rss>
