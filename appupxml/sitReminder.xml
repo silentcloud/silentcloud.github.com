@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
    <channel>
-      <title>SitReminder App Changelog</title>
-      <link>http://silentcloud.github.io/appupxml/sitReminder.xml</link>
-      <description></description>
-      <language>zh</language>
+        <title>SitReminder App Changelog</title>
+        <link>http://silentcloud.github.io/appupxml/sitReminder.xml</link>
+        <description></description>
+        <language>zh</language>
 
+        <item>
+            <title>SitReminder v1.1.0</title>
+            <description><![CDATA[
+                <h2>SitReminder v1.1.0 更新日志</h2>
+                <ul>
+                    <li>[FIX] 修复提醒框不偶尔不弹出问题</li>
+                    <li>[FIX] 优化App大小</li>
+                </ul>
+                <p>更多内容请访问 <a href="https://github.com/silentcloud/SitReminder">SitReminder</a></p>
+            ]]></description>
+            <pubDate>21 Aug 2014 16:40:00 +0800</pubDate>
+            <sparkle:minimumSystemVersion>10.9.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://silentcloud.github.io/upload/SitReminder.dmg" sparkle:shortVersionString="1.1.0" sparkle:version="110" length="4082734" type="application/octet-stream" sparkle:dsaSignature="MC0CFB9G9xc4I46qFdWtC2AKmRMXdHHwAhUA7uc/fDoKltcpxq+bjpF6ifga8U8=" />
+         </item>
       <item>
             <title>SitReminder v1.0.1</title>
             <description><![CDATA[
