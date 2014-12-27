@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>婚礼纪请帖</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="">
+
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,  user-scalable=0,,minimal-ui" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="email=no" name="format-detection" />
+
+    <link type="text/css" rel="stylesheet" href="./mobile_common.css" />
+    <link type="text/css" rel="stylesheet" href="./Invitation.css" />
+</head>
+<body>
+    <div class="area-1th">
+        <div class="love"><img src="./images/love.png"/></div>
+        <div class="topImg">
+            <div id="cavbox">
+                <em class="wd1">我</em>
+                <em class="wd2">们</em>
+                <em class="wd3">结</em>
+                <em class="wd4">婚</em>
+                <em class="wd5">啦</em>
+                <em class="wd6">Wedding</em>
+                <em class="wd7">Invitation</em>
+
+            </div>
+            <img src="./images/sqx2.png"/>
+        </div>
+        <!--<div class="clickTo"><span><em></em></span><img src="images/clickto.png"/></div>-->
+    </div>
+    <div class="area-2th navWin" style="display:none;">
+        <div class="invCont"></div>
+        <!--
+        <div class="addCol">
+            <h3>致宾客：</h3>
+            <p>对宾客说的写什么对宾客说的写什么对宾客说的写什么对宾客说的写什么对宾客说的。写什么对宾客说的写什么对宾客说的写什么对宾客说的写什么对宾客说的写什么对宾客说的写什</p>
+        </div>
+        -->
+    </div>
+    <div class="area-3th navWin" style="display:none;">
+        <div class="imgs"></div>
+        <div class="imgs"></div>
+        <div id="imgbox">
+            <div id="back"><img src="./images/eline.jpg"/></div>
+            <div id="imgplay">
+                <!--
+                <div class="swiper-container">
+                    <div id="slide_item" class="swiper-wrapper">
+
+                    </div>
+                </div>
+                <div class="dotModule_new">
+                    <div id="slide_item_dot"></div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+    <div class="area-4th navWin" style="display:none;">
+        <div  id="allmap"></div>
+    </div>
+
+    <div class="invNav"  style="display:none;">
+        <div class="invBox">
+            <div class="itemNav">
+                <div class="a-btn aimg" href="#">
+                    <em></em>
+                    <span>请帖</span>
+                </div>
+                <div class="b-btn" href="#">
+                    <em></em>
+                    <span>婚礼相册</span>
+                </div>
+                <div class="c-btn" href="#">
+                    <em></em>
+                    <span>婚宴地址</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="musicBtn">
+        <span class="playbtn audi" style="display:none;"><img src="./images/play-btn.png" /></span>
+        <span class="stopbtn audi"><img src="./images/stop-btn.png"/></span>
+        <span class="psbg"><img src="./images/a6.png"/></span>
+    </div>
+
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=3160196cf2faa884b0d07d11f15b4631"></script>
+    <script src="./scroll.js"></script>
+    <script>
+
+        $(function(){
+            var paras   = {
+                invitation: 'BFS8PQ',
+                from: 'singlemessage',
+                isappinstalled: 1
+            }
+            var code    =paras["invitation"];
+            base();
+
+            function base(){
+                if($(window).width()>330){
+                    //$('.addCol').css({'width':320});
+                    $('#sendCont').css({'margin-top':'13%'})
+                };
+                if($(window).height()<450){$('.love').css({'top':'48%'});$('.txtchat').css({'height':'5rem'});$('.txtname').css({'height':'2rem'});}
+                else if($(window).height()>451&&$(window).height()<530){$('.love').css({'top':'40%'});}
+                else if($(window).height()>531){$('.love').css({'top':'33%'})}
+                else if($(window).height()>531){$('.love').css({'top':'20%'})}
+
+                var ctW=$('.clickTo').width();
+
+                var html='';
+                    html+='<div class="clickTo"><span><em></em></span><img src="./images/clickto.png"/></div>';
+                    $('.area-1th').append(html);
+
+                $('.clickTo').css({'left':($(window).width()-ctW-20)/2});
+                $('.area-1th').css({'height':$(window).height()});
+                $('.topImg').css({'padding-top':$(window).height()*0.08});
+                $('#allmap').css({'height':$(window).height()})
+                $('#invNav').css({'width':$(window).width()});
+
+                var _div=$('.spbtn').find('div');
+                _div.on('click',function(){
+                    $(this).addClass('scod').siblings().removeClass('scod');
+                });
+
+                $('.txtchat').on('click',function(){
+                    $('.invNav').hide()
+                });
+
+                $('.txtname').on('click',function(){
+                    $('.invNav').hide()
+                });
+
+
+            };
+
+            invData();
+
+            $('#wxwall').attr({'href':'/gww/z/'+code});
+            function invData(){
+                $.ajax({
+                    url: 'http://www1.hunliji.com/wedding.json?invitation='+code,
+                    //url: 'http://wall.hunliji.com/gww/wedding_card_info?invite_code='+code,
+                    type:'get',
+                    beforeSend:function(){},
+                    complete: function(){},
+                    success:function(result){
+                        $('#card_id').val(result.card.id);
+
+                        getInv();
+                        function getInv(){
+                            var html='';
+                                html+='<div class="invBg"><img src="'+result.theme.background+'?imageView/2/w/640"/></div>';
+                                html+='<div class="invCover"></div>';
+                                html+='<div class="invGroom align_'+result.theme.groom_info.alignment+'" style="top:'+Number(result.theme.groom_info.y-(result.theme.groom_info.y*0.06))+'px;left:'+Number(result.theme.groom_info.x-(result.theme.groom_info.x*0.06))+'px;width:'+result.theme.groom_info.width+'px;height:'+result.theme.groom_info.height+'px;font-size:'+result.theme.groom_info.font+'px;color:rgb('+result.theme.groom_info.color+')">'+result.card.groom_name+'</div>';
+                                html+='<div class="invBride align_'+result.theme.bride_info.alignment+'" style="top:'+Number(result.theme.bride_info.y-(result.theme.bride_info.y*0.06))+'px;left:'+Number(result.theme.bride_info.x-(result.theme.bride_info.x*0.06))+'px;width:'+result.theme.bride_info.width+'px;height:'+result.theme.bride_info.height+'px;font-size:'+result.theme.bride_info.font+'px;color:rgb('+result.theme.bride_info.color+')">'+result.card.bride_name+'</div>';
+                                html+='<div class="invChat align_'+result.theme.location_info.alignment+'" style="top:'+Number(result.theme.location_info.y-(result.theme.location_info.y*0.06))+'px;left:'+Number(result.theme.location_info.x-(result.theme.location_info.x*0.06))+'px;width:'+result.theme.location_info.width+'px;height:'+result.theme.location_info.height+'px;font-size:'+result.theme.location_info.font+'px;color:rgb('+result.theme.location_info.color+')">'+result.card.place+'</div>';
+                                html+='<div class="invNew_time align_'+result.theme.time_info.alignment+'" style="top:'+Number(result.theme.time_info.y-(result.theme.time_info.y*0.06))+'px;left:'+Number(result.theme.time_info.x-(result.theme.time_info.x*0.06))+'px;width:'+Number(result.theme.time_info.width+5)+'px;height:'+result.theme.time_info.height+'px;font-size:'+result.theme.time_info.font+'px;color:rgb('+result.theme.time_info.color+')">'+format(new Date(result.card.time), 'yyyy年MM月dd日HH时mm分')+'</div>';
+                                html+='<div class="invOld_time align_'+result.theme.lunar_info.alignment+'" style="top:'+Number(result.theme.lunar_info.y-(result.theme.lunar_info.y*0.06))+'px;left:'+Number(result.theme.lunar_info.x-(result.theme.lunar_info.x*0.06))+'px;width:'+result.theme.lunar_info.width+'px;height:'+result.theme.lunar_info.height+'px;font-size:'+result.theme.lunar_info.font+'px;color:rgb('+result.theme.lunar_info.color+')"></div>';
+
+                                var undef
+
+                                if(result !=undef && result !=null){
+                                    if(result.audio !=undef && result.audio !=null)
+                                    {
+                                        if(result.audio.audio_path !=undef && result.audio.audio_path !=null){
+                                            html+='<div class="invMusic"><audio id="playMusic"  preload="load" src="'+result.audio.audio_path+'"></audio></div>';
+                                        }
+                                    }
+                                }
+                                $('.invCont').append(html);
+                            if(result.card.speech!==''&&result.card.speech!==null){
+                                var _html='';
+                                    _html+='<div class="addCol" style=background:rgb('+result.theme.speech_info.bgcolor+')><h3 style=color:rgb('+result.theme.speech_info.color+');font-size:'+result.theme.titlefont+'px>致宾客：</h3>';
+                                    _html+='<p style=font-size:'+result.theme.speech_info.font+'px;color:rgb('+result.theme.speech_info.color+')>'+result.card.speech+'</p>';
+                                    _html+='</div>';
+                                    $('.area-2th').append(_html);
+                            }
+
+                                var a = 1;
+                                try{
+                                    var transform  = JSON.parse(result.card.trans_info);
+                                }catch(e){
+                                    var transform =  {'a':1,'b':0,'c':0,'d':1,'tx':0,'ty':0,}
+                                }
+                                var oWidth,oHeight,angle;
+                                angle = result.theme.image_info[0].angle
+                                var img=new Image(),
+                                    path = result.photo[0].path;
+                                if(path){
+                                    path = path.indexOf("http") == 0 ? path : "/" +path;
+                                }
+                                img.src=path;
+                                img.onload=function(){
+                                    oWidth=parseFloat(this.width);
+                                    oHeight=parseFloat(this.height);
+                                    transform = transformation(transform,result.theme.image_info[0],oWidth,oHeight);
+                                    var coverTrans = {'height':transform.height * a-13,'width':transform.width * a-13,'x':transform.x * a,'y':transform.y * a}
+                                    $('.invCover').css({"height":coverTrans.height,"width":coverTrans.width,'left':Number(coverTrans.x-(coverTrans.x*0.06)),'top':Number(coverTrans.y-(coverTrans.y*0.06)),'transform':'rotate('+transform.angle+'deg)','-o-transform':'rotate('+transform.angle+'deg)','-moz-transform':'rotate('+transform.angle+'deg)','-webkit-transform':'rotate('+transform.angle+'deg)'});
+                                    $(this).css({"height":coverTrans.height,"width":coverTrans.width});
+                                    $('.invCover').html($(this));
+                                };
+
+                                $('.area-1th').on('click',function(){
+
+                                    //$('.area-1th').fadeOut();
+                                    $('.area-1th').animate({'opacity':0},1000,function(){
+                                        $('.invNav').show()
+                                        $('.musicBtn').show();
+                                        $('.area-1th').hide()
+                                        $('.area-2th').fadeIn();
+
+                                    })
+
+                                    var music =document.getElementById('playMusic');
+                                    var undef;
+                                    if(music !=undef && music !=null){
+                                        music.play();
+                                    }
+
+                                });
+
+
+
+                                $('.playbtn').on('click',function(){
+                                    $(this).hide()
+                                    $('.stopbtn').show();
+                                    document.getElementById('playMusic').play();
+                                });
+
+                                $('.stopbtn').on('click',function(){
+                                    $(this).hide()
+                                    $('.playbtn').show()
+                                    document.getElementById('playMusic').pause();
+                                });
+                        };
+
+                        loader();
+                        function loader(){
+                            $('.itemNav').find('div').on('click',function(){
+                                var index=$('.itemNav').find('div').index(this);
+                                $(this).addClass('aimg').siblings().removeClass('aimg');
+                                $('.navWin').hide();
+                                $('.navWin').eq(index).show();
+                                if(index==2){getMap();}
+                            });
+                        };
+
+
+                        getPic();
+                        function getPic(){
+                                console.log(result.video);
+                                var _diva=$('.area-3th').find('div').eq(0),_divb=$('.area-3th').find('div').eq(1),html='',_html='';
+
+                                console.log(result.photo.length);
+                                if(result.photo.length>1||result.video!=undefined){
+
+                                    for(var i=1;i<result.photo.length;i++){
+                                        if(i%2!==0){
+                                            html='<span class="imgto"><img src="'+result.photo[i].path+'?imageView/2/w/320"/></span>';
+                                            _diva.append(html);
+                                        }else{
+                                            html='<span class="imgto"><img src="'+result.photo[i].path+'?imageView/2/w/320"/></span>';
+                                            _divb.append(html);
+                                        }
+
+                                    };
+                                    console.log(_diva.find('span').length,_divb.find('span').length);
+
+                                    if(result.video!=undefined){
+
+                                        if(_diva.find('span').length>_divb.find('span').length){
+                                            _html='<span><video class="video1"  controls tabindex="0" preload="metadata" poster="'+result.video.video_path+'?vframe/jpg/offset/2/w/320/h/240" ><source src="'+result.video.video_path+'" type="video/mp4"><source src="'+result.video.video_path+'" type="video/ogg"><source src="'+result.video.video_path+'" type="video/webm"></video></span>';
+                                            _divb.prepend(_html);
+
+                                        }else{
+                                            _html='<span><video class="video1"  controls tabindex="0" preload="metadata" poster="'+result.video.video_path+'?vframe/jpg/offset/2/w/320/h/240" ><source src="'+result.video.video_path+'" type="video/mp4"><source src="'+result.video.video_path+'" type="video/ogg"><source src="'+result.video.video_path+'" type="video/webm"></video></span>';
+                                            _diva.prepend(_html);
+                                        }
+                                        /*
+                                        if(_diva.find('span').length>_divb.find('span').length){
+                                            _html='<span><a style="position:relative;display:block;" href="'+result.video.video_path+'"><img style="position:absolute;width:40px;bottom:5px;left:5px;" src="http://wall.hunliji.com/gwwpublic/invitation/images/player.png"/><img style="width:100%;" src="'+result.video.video_path+'?vframe/jpg/offset/2/w/320/h/240"/></a></span>';
+                                            _divb.prepend(_html);
+
+                                        }else{
+                                            _html='<span><a style="position:relative;display:block;" href="'+result.video.video_path+'"><img style="position:absolute;width:40px;bottom:5px;left:5px;" src="http://wall.hunliji.com/gwwpublic/invitation/images/player.png"/><img style="width:100%;" src="'+result.video.video_path+'?vframe/jpg/offset/2/w/320/h/240"/></a></span>';
+                                            _diva.prepend(_html);
+                                        }
+                                        */
+                                    }
+
+                                    $('#wytip').remove();
+                                }else{
+                                    var html='';
+                                        html='<div id="wytip" style="position:fixed;top:5rem;left:'+($(window).width()-160)/2+'px;text-align:center;font:2rem/3rem Microsoft Yahei;color:#ccc;">新人还未上传相册</div>';
+
+                                    $('.area-3th').append(html);
+                                }
+
+
+                        };
+
+                        addDiv();
+                        function addDiv(){
+                            var html='';
+                                html+='<div class="removeDiv"><div class="swiper-container"><div id="slide_item" class="swiper-wrapper"></div></div>';
+                                html+='<div class="dotModule_new"><div id="slide_item_dot"></div></div></div>';
+
+                                $('#imgplay').append(html);
+                        };
+
+                        var str;
+                        function displayImg(){
+                            var arr=[],ps=[];
+                            for(var i=1;i<result.photo.length;i++){
+                                arr.push(result.photo[i].path);
+                                ps.push(result.photo[i].description);
+                            };
+                            $('#back').show();
+                            $('#imgbox').show();
+
+                            for(var s in arr){
+                                if(arr[s].indexOf(str)>-1){
+                                    arr.splice(s,1);
+                                    arr.unshift(str);
+                                    var _ps=ps[s];
+                                    ps.splice(s,1);
+                                    ps.unshift(_ps);
+                                };
+                            };
+                            imgload(arr);
+                            var html='';
+                                for(var i=0;i<arr.length;i++){
+
+                                    if(ps[i]!==''){
+                                     html='';
+                                        html+='<div class="item_cont" style="float:left;height:'+$(window).height()+'px;width:'+$(window).width()+'px"><img style=width:100% px src="'+arr[i]+'?imageView/2/w/'+$(window).width()*2+'" /><p><em>'+ps[i]+'</em></p></div>';
+                                        $('#slide_item').append(html);
+                                    }else{
+                                     html='';
+                                        html+='<div class="item_cont" style="float:left;height:'+$(window).height()+'px;width:'+$(window).width()+'px"><img style=width:100% px src="'+arr[i]+'?imageView/2/w/'+$(window).width()*2+'" /></div>';
+                                        $('#slide_item').append(html);
+                                    }
+                                };
+
+
+
+                            if(document.getElementById("slide_item")){
+                                var slide_item = new ScrollPic();
+                                slide_item.scrollContId   = "slide_item";
+                                slide_item.dotListId      = "slide_item_dot";
+                                slide_item.dotOnClassName = "selected";
+                            //  slide_item.arrLeftId      = "sl_left";
+                            //  slide_item.arrRightId     = "sl_right";
+                                slide_item.frameWidth     = $(window).width();
+                                slide_item.pageWidth      = $(window).width();
+                                slide_item.scrollWidth    = 0;
+                                slide_item.autoPlay       = false;
+                                slide_item.speed          = 10;
+                                slide_item.space          = 30;
+                                slide_item.initialize();
+                            };
+                            $('.dotModule_new').css({'left':($(window).width()-$('.dotModule_new').width())/2});
+                            $('.item_cont p').css({'left':($(window).width()-$('.item_cont p').width())/2});
+                        }
+                        //滑动图片
+                        onImg();
+                        function onImg(){
+                            var _a=$('.imgto').find('img');
+                            _a.on('click',function(){
+                            str=$(this).attr('src').replace('?imageView/2/w/320','');
+                                displayImg();
+
+                            });
+
+                            $('#back').on('click',function(){
+                                $(this).hide();
+                                $('.removeDiv').remove();
+                                addDiv();
+                            })
+                        }
+
+                        //图片加载
+                        function imgload(arrUrl){
+                            var count = 0;
+                            for(var i=0;i<arrUrl.length;i++){
+                                var img = new Image();
+                                img.src = arrUrl[i];
+                                img.onload = function(){
+                                    count += 1;
+                                    if(count >= arrUrl.length){
+                                        var _h=$(document).height();
+                                        $('.item_cont').css({'height':_h});
+                                        if($(window).height()<450){$('.item_cont p').css({'top':'26rem'})}
+                                        else if($(window).height()>450){$('.item_cont p').css({'top':'38rem'})}
+                                    }
+                                }
+                            }
+                        };
+
+                        //地图定位
+                        function getMap(){
+                            var adds=result.card.place;
+                            var map = new BMap.Map("allmap");
+                            var point = new BMap.Point(result.card.longitude,result.card.latitude);
+                            var marker = new BMap.Marker(point);  // 创建标注
+                            map.centerAndZoom(point, 16);
+                            map.addOverlay(marker);
+
+                            var opts = {
+                                title:result.company_name,
+                                enableMessage:false,//手机icon
+                                enableAutoPan : true //自动平移
+                            }
+                            var infoWindow = new BMap.InfoWindow('地址:'+adds, opts);  // 创建信息窗口对象
+                                map.openInfoWindow(infoWindow,point); //开启信息窗口
+
+                        }
+
+                        //图片算法
+                        function transformation(data,size,w,h){
+                            var scale_x,scale_y,angle,x,y,width,height,temp;
+                            scale_x = Math.sqrt(Math.pow(data.a,2)+Math.pow(data.c,2));
+                            scale_y = Math.sqrt(Math.pow(data.b,2)+Math.pow(data.d,2));
+                            angle = Math.atan2(parseFloat(data.b),parseFloat(data.a))/Math.PI*180;
+                            if(w/size.width > h/size.height){
+                                scale = h/size.height;
+                                width = w*size.height/h;
+                                height = size.height;
+                            }else{
+                                scale = w/size.width;
+                                width = size.width;
+                                height = h*size.width/w;
+                            }
+                            width = width * scale_x;
+                            height = height * scale_y;
+                            x = size.x - (width - size.width)/2+data.tx;
+                            y = size.y - (height - size.height)/2+data.ty;
+                            return {'x':x,'y':y,'width':width,'height':height,'angle':angle,'tx':data.tx,'ty':data.ty};
+                        };
+
+                        //时间转换
+                        function format(time, format){
+                            var t = new Date(time);
+                            var tf = function(i){return (i < 10 ? '0' : '') + i};
+                            return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a){
+                                switch(a){
+                                    case 'yyyy':
+                                        return tf(t.getFullYear());
+                                        break;
+                                    case 'MM':
+                                        return tf(t.getMonth() + 1);
+                                        break;
+                                    case 'mm':
+                                        return tf(t.getMinutes());
+                                        break;
+                                    case 'dd':
+                                        return tf(t.getDate());
+                                        break;
+                                    case 'HH':
+                                        return tf(t.getHours());
+                                        break;
+                                    case 'ss':
+                                        return tf(t.getSeconds());
+                                        break;
+                                }
+                            })
+                        };
+
+                        //公历转农历
+                        getDate()
+                        function getDate(){
+                            var sWeek = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六");
+                            var CalendarData = new Array(100);
+                            var madd = new Array(12);
+                            var tgString = "甲乙丙丁戊己庚辛壬癸";
+                            var dzString = "子丑寅卯辰巳午未申酉戌亥";
+                            var numString = "一二三四五六七八九十";
+                            var monString = "正二三四五六七八九十冬腊";
+                            var weekString = "日一二三四五六";
+                            var sx = "鼠牛虎兔龙蛇马羊猴鸡狗猪";
+                            var cYear, cMonth, cDay, TheDate;
+                            CalendarData = new Array(
+                            0xA4B, 0x5164B, 0x6A5, 0x6D4, 0x415B5, 0x2B6, 0x957, 0x2092F, 0x497, 0x60C96,
+                            0xD4A, 0xEA5, 0x50DA9, 0x5AD, 0x2B6, 0x3126E, 0x92E, 0x7192D, 0xC95, 0xD4A,
+                            0x61B4A, 0xB55, 0x56A, 0x4155B, 0x25D, 0x92D, 0x2192B, 0xA95, 0x71695, 0x6CA,
+                            0xB55, 0x50AB5, 0x4DA, 0xA5B, 0x30A57, 0x52B, 0x8152A, 0xE95, 0x6AA, 0x615AA,
+                            0xAB5, 0x4B6, 0x414AE, 0xA57, 0x526, 0x31D26, 0xD95, 0x70B55, 0x56A, 0x96D,
+                            0x5095D, 0x4AD, 0xA4D, 0x41A4D, 0xD25, 0x81AA5, 0xB54, 0xB6A, 0x612DA, 0x95B,
+                            0x49B, 0x41497, 0xA4B, 0xA164B, 0x6A5, 0x6D4, 0x615B4, 0xAB6, 0x957, 0x5092F,
+                            0x497, 0x64B, 0x30D4A, 0xEA5, 0x80D65, 0x5AC, 0xAB6, 0x5126D, 0x92E, 0xC96,
+                            0x41A95, 0xD4A, 0xDA5, 0x20B55, 0x56A, 0x7155B, 0x25D, 0x92D, 0x5192B, 0xA95,
+                            0xB4A, 0x416AA, 0xAD5, 0x90AB5, 0x4BA, 0xA5B, 0x60A57, 0x52B, 0xA93, 0x40E95);
+                            madd[0] = 0; madd[1] = 31; madd[2] = 59; madd[3] = 90;
+                            madd[4] = 120; madd[5] = 151; madd[6] = 181; madd[7] = 212;
+                            madd[8] = 243; madd[9] = 273; madd[10] = 304; madd[11] = 334;
+                            function GetBit(m, n) { return (m >> n) & 1; }
+                            function e2c() {
+                                var TheDate = (arguments.length != 3) ? new Date() : new Date(arguments[0], arguments[1], arguments[2]);
+                                var total, m, n, k;
+                                var isEnd = false;
+                                var tmp = TheDate.getFullYear();
+                                total = (tmp - 1921) * 365 + Math.floor((tmp - 1921) / 4) + madd[TheDate.getMonth()] + TheDate.getDate() - 38;
+                                if (TheDate.getYear() % 4 == 0 && TheDate.getMonth() > 1) {
+                                    total++;
+                                }
+                                for (m = 0; ; m++) {
+                                    k = (CalendarData[m] < 0xfff) ? 11 : 12;
+                                    for (n = k; n >= 0; n--) {
+                                        if (total <= 29 + GetBit(CalendarData[m], n)) {
+                                            isEnd = true; break;
+                                        }
+                                        total = total - 29 - GetBit(CalendarData[m], n);
+                                    }
+                                    if (isEnd) break;
+                                }
+                                cYear = 1921 + m;
+                                cMonth = k - n + 1;
+                                cDay = total;
+                                if (k == 12) {
+                                    if (cMonth == Math.floor(CalendarData[m] / 0x10000) + 1) {
+                                        cMonth = 1 - cMonth;
+                                    }
+                                    if (cMonth > Math.floor(CalendarData[m] / 0x10000) + 1) {
+                                        cMonth--;
+                                    }
+                                }
+                            }
+                            function GetcDateString() {
+                                var tmp = "";
+                                tmp += tgString.charAt((cYear - 4) % 10);
+                                tmp += dzString.charAt((cYear - 4) % 12);
+                                tmp += "年 ";
+                                if (cMonth < 1) {
+                                    tmp += "(闰)"; tmp += monString.charAt(-cMonth - 1);
+                                } else {
+                                    tmp += monString.charAt(cMonth - 1);
+                                }
+                                tmp += "月";
+                                tmp += (cDay < 11) ? "初" : ((cDay < 20) ? "十" : ((cDay < 30) ? "廿" : "三十"));
+                                if (cDay % 10 != 0 || cDay == 10) {
+                                    tmp += numString.charAt((cDay - 1) % 10);
+                                }
+                                return tmp;
+                            }
+                            function GetLunarDay(solarYear, solarMonth, solarDay) {
+                                if (solarYear < 1921 || solarYear > 2020) {
+                                    return "";
+                                } else {
+                                    solarMonth = (parseInt(solarMonth) > 0) ? (solarMonth - 1) : 11;
+                                    e2c(solarYear, solarMonth, solarDay);
+                                    return GetcDateString();
+                                }
+                            }
+                            var D = new Date();
+                            var yy = D.getFullYear();
+                            var mm = D.getMonth() + 1;
+                            var dd = D.getDate();
+                            var ww = D.getDay();
+                            var ss = parseInt(D.getTime() / 1000);
+                            function getFullYear(d) {// 修正firefox下year错误
+                                yr = d.getYear(); if (yr < 1000)
+                                yr += 1900; return yr;
+                            }
+                            function showDate(date,obj) {
+                                var dNow = new Date(date)
+                                var timeString = dNow.toLocaleTimeString();
+                                var sValue1 = getFullYear(dNow) + "年" + (dNow.getMonth() + 1) + "月" + dNow.getDate() + "日 " + timeString;
+                                var sValue2 = "农历: " + GetLunarDay(getFullYear(dNow), (dNow.getMonth() + 1), dNow.getDate()).substr(4, 8) + "(" + sWeek[dNow.getDay()] + ")";
+                                var svalue3 = GetLunarDay(getFullYear(dNow), (dNow.getMonth() + 1), dNow.getDate());//农历
+                                var sx2 = sx.substr(dzString.indexOf(svalue3.substr(1, 1)), 1);//属相
+                                var svalue33 = svalue3.substr(0, 3);//农历年
+                                var sx22 = "农历: " + svalue3.substr(4, 8);//农历日期
+                                $(obj).text(sValue2);
+                            }
+
+                            var d = new Date(result.card.time);
+                            showDate(d,'.invOld_time');
+
+                        };
+
+
+
+
+                    }
+                })
+            }
+
+        })
+    </script>
+</body>
+</html>
