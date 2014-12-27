@@ -1,12 +1,15 @@
 markdown: kramdown
-pygments: true
+highlighter: true
 safe: false
+repository: https://github.com/silentcloud/silentcloud.github.com
 permalink: /posts/:title.html
+url: "http://withfun.cn"
 exclude:
   - README.md
 
-name: 意犹WEB前端
-host: silentcloud.github.io
+title: 意犹WEB前端
+email: rjmuqiang@gmail.com
+# host: silentcloud.github.io
 desc: Love Life , Love Web Design !!!
 
 custom:
