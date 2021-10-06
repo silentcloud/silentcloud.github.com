@@ -3,10 +3,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=GBK">
   <script type="text/javascript">
     window.onload = function() {
-      window.location.href = 'itms-services://?action=download-manifest&url=https://silentcloud.github.io/upload/manifest.plist';
+    //  window.location.href = 'itms-services://?action=download-manifest&url=https://silentcloud.github.io/upload/manifest.plist';
+      var devicePixelRatio = window.devicePixelRatio || 1;
+  dpi_x = document.getElementById('testdiv').offsetWidth * devicePixelRatio;
+  dpi_y = document.getElementById('testdiv').offsetHeight * devicePixelRatio;
+  
+  alert(dpi_x, dpi_y);
     }
+    
+    
   </script>
 </head>
 <body>
+  <div id='testdiv' style='height: 1in; left: -100%; position: absolute; top: -100%; width: 1in;'></div>
 </body>
 </html>
